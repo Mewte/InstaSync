@@ -1,2 +1,2 @@
 # InstaSync
-All resources responsible for running instasync.com
+Code responsible for running instasync.com
