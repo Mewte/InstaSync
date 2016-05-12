@@ -1,0 +1,312 @@
+<% layout('../layout/template') -%>
+<div class="room-container">
+	<div class="row room-component-row">
+		<div class="col-sm-8 col-xs-12 column">
+			<div id="media"></div>
+		</div>
+		<div class="col-sm-4 col-xs-12 column">
+			<div class="chat">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs chat-tabs" role="tablist">
+					<li id="tabs_chat" class="active">
+						<a class='active_tooltip' data-original-title="Chat" href="#tabs_chat_content" data-toggle="tab" rel="tooltip" data-placement="top">
+							<i class="fa fa-comments"></i>
+							<span class="badge unread-msg-count"></span>
+						</a>
+					</li>
+					<li id="tabs_users" class="tabs-users active-tooltip" data-original-title="Toggle Users" data-toggle="tab" data-placement="top">
+						<i class="fa fa-users"></i>
+						<span class="badge user-count"></span>
+					</li>
+					<li class="hidden-sm hidden-md hidden-lg">
+						<a class='active_tooltip' id="tabs_polls" data-original-title="Polls" href="#tabs_polls_content" data-toggle="tab" rel="tooltip" data-placement="top">
+							<i class="fa fa-bar-chart"></i>
+						</a>
+					</li>
+					<li>
+						<a class='active_tooltip' data-original-title="Settings" href="#tabs_chat_settings_content" data-toggle="tab" rel="tooltip" data-placement="top">
+							<i class="fa fa-cog"></i>
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content chat-tabs-content">
+					<div class="tab-pane active" id='tabs_chat_content'>
+						<ol id="user_list" class="user-list"></ol>
+						<div id="chat_messages" class="chat-messages"></div>
+						<div class="input">
+							<input id="cin" type="text" style="display: none;" disabled maxlength="240" value=""/>
+							<div id='join' style='display: none;' class="input-group">
+								<input id='join_username' type="text" class="form-control" placeholder='Enter a username'>
+								<span class="input-group-btn">
+									<button id='join_btn' class="btn btn-default" type="button">Join</button>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tabs_polls_content">
+						<div class="poll-top">
+							<div id="poll_message" class="text-danger" style="display: none;">You must be logged in to vote.</div>
+							<div class="mod-control"><button id="create_poll_btn_tab" class="btn btn-xs btn-default">Create</button></div>
+						</div>
+						<div id="poll_tab"></div>
+					</div>
+					<div class="tab-pane" id="tabs_chat_settings_content">
+						<button id="clearchat_btn" class="btn btn-xs btn-primary">Clear Chat</button>
+						<div class="checkbox">
+							<label class="active_tooltip" data-original-title="" data-placement="bottom">
+								<input id="toggle_greyname_chat" type="checkbox" value="ShowGreyNameChat" checked="">
+								Show Grey Name messages in chat
+							</label>
+						</div>
+						<!--
+						<div class="checkbox">
+							<label class="active_tooltip" data-original-title="Dims the background colors" data-placement="bottom">
+								<input id="toggle_dim" type="checkbox" value="EnableDim" checked="">
+								InstaSync Night Mode
+							</label>
+						</div>
+						-->
+						<div class="checkbox" style="display: none;">
+							<label class="active_tooltip" data-original-title="" data-placement="bottom">
+								<input id="toggle_show_joined" type="checkbox" value="ShowJoined" checked="">
+								Show when users join/leave chat
+							</label>
+						</div>
+					</div>
+					<div id="user_profile">
+						
+					</div>
+				</div>
+				<!-- User Profile Modal -->
+				<div class="modal fade" id="user_profile_modal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="userModalLabel">{USERNAME}</h4>
+							</div>
+							<div class="modal-body">
+								<div class="avatar">
+									<img src="" />
+								</div>
+								<div class="bio">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button id="profile_modal_kick" type="button" class="btn btn-default btn-sm mod-control">Kick</button>
+								<button id="profile_modal_ban" type="button" class="btn btn-default btn-sm mod-control">Ban</button>
+								<button id="profile_modal_toggle_mute" type="button" class="btn btn-default btn-sm">Mute</button>
+								<button type="button" class="btn btn-default btn-sm" onclick="$('#user_profile_modal').modal('hide')">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Create Poll Modal -->
+				<div class="modal fade" id="create_poll_modal" tabindex="-1" role="dialog" aria-labelledby="pollModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="pollModalLabel">Create Poll</h4>
+							</div>
+							<div class="modal-body">
+								<div class="input-group input-group-sm">
+									<span class="input-group-addon">Title</span>
+									<input id="create_poll_title" type="text" class="form-control">
+								</div>
+								<div class="poll-options"></div>
+								<div class="" style="margin: 0px 0px -8px 2px;">
+									<i class="fa fa-plus add-poll-option"></i>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button id="create_poll" type="button" class="btn btn-primary btn-sm">Create</button>
+								<button type="button" class="btn btn-default btn-sm" onclick="$('#create_poll_modal').modal('hide')">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8 col-xs-12 column">
+			<div class="video-controls">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active">
+						<a class='active_tooltip' data-original-title="Playlist" href="#tabs_playlist" data-toggle="tab" rel="tooltip" data-placement="bottom">
+							<i class="fa fa-list-ul"></i>
+						</a>
+					</li>
+					<li>
+						<a class='active_tooltip' data-original-title="Search" href="#tabs_playlist_search" data-toggle="tab" rel="tooltip" data-placement="bottom">
+							<i class="fa fa-search"></i>
+						</a>
+					</li>
+					<li>
+						<a class='active_tooltip' data-original-title="Settings" href="#tabs_playlist_settings" data-toggle="tab" rel="tooltip" data-placement="bottom">
+							<i class="fa fa-cog"></i>
+						</a>
+					</li>
+					<li class="skip-controls">
+						<div class="skip-counter">
+							<div id="skip_button">
+								<i class="fa fa-step-forward active_tooltip" data-original-title="Vote to Skip" data-placement="bottom"></i>
+							</div>
+							<div id="skip_counter">
+							</div>
+						</div>
+					</li>
+					<li class="add-video">
+						<a class="dropdown-toggle" href="#" data-toggle="dropdown"><strong class="caret"></strong></a>
+						<div class="dropdown-menu dropdown-form">
+							<div class="form">
+								<div>
+									<input id="add_video_url" type="text" class="form-control" placeholder="Source URL">
+								</div>
+								<div id='invalid_login_message' class="text-danger">
+								</div>
+								<button id="add_video_btn" class="btn btn-xs btn-primary btn-block form-submit active_tooltip" data-original-title="Supports YouTube, Vimeo, Dailymotion, Twitch.TV" data-placement="bottom">Add <span style="padding-left: 5px;" class="glyphicon glyphicon-plus"></span></button>
+							</div>
+						</div>
+					</li>
+					<li class="playlist-lock">
+						<i id="playlist_lock" class="fa fa-lock active_tooltip" data-original-title="Moderators can lock/unlock the playlist." data-placement="bottom"></i>
+					</li>
+					<li class="toggle-leader">
+						<i id="toggle_leader" class="fa fa-users active_tooltip mod-control" data-original-title="Allows you to do leader only actions such as controlling the player." data-placement="bottom"></i>
+					</li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="tabs_playlist">
+						<ol class="playlist" ondrop="drop(event)" ondragover="allowDrop(event)" id="playlist"></ol>
+						<script>
+							function allowDrop(ev) {
+								ev.preventDefault();
+							}
+							function drop(ev) {
+								ev.preventDefault();
+								var data = ev.dataTransfer.getData("text");
+								room.sendcmd("add",{URL:data});
+							}
+						</script>
+						<div class="playlist-stats">
+							<div id="playlist_duration"></div>
+							<div id="playlist_count"></div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tabs_playlist_search">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-6 col-xs-12">
+								<div class="input-group">
+									<input id="video_search_text" type="text" class="form-control" placeholder="YouTube Search...">
+									<span class="input-group-btn">
+										<button id="video_search_submit" class="btn btn-default" type="button">Search</button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div id="search_videos" class="search-videos"></div>
+							<div class="col-xs-12">
+								<div style="text-align: center; cursor: pointer;"><span id="video_search_previous">Prev</span> | <span id="video_search_next">Next</span></div>
+								<div class="powered-by"><i class="fa fa-youtube"></i></div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tabs_playlist_settings">
+						<button id="reload_btn" class="btn btn-xs btn-primary">Reload Video</button>
+						<button id="resync_btn" class="btn btn-xs btn-primary">Resync Video</button>
+						<button id="disable_player" class="btn btn-xs btn-primary">Disable Player</button>
+						<div class="checkbox">
+							<label class="active_tooltip" data-original-title="Check to use the native YouTube Controls" data-placement="bottom">
+								<input id="toggleYTcontrols_box" type="checkbox" value="YouTubeControls">
+								Use Native YouTube controls
+							</label>
+						</div>
+						<div class="checkbox">
+							<label class="active_tooltip" data-original-title="Uncheck if your internet connection is poor" data-placement="bottom">
+								<input id="toggle_autosync_box" type="checkbox" value="Autosync" checked="">
+								Autosync
+							</label>
+						</div>
+						<div class="mod-control">
+							<h4>Playlist (Mods only)</h4>
+							<button id="shuffle_btn" class="btn btn-sm btn-primary active_tooltip" data-original-title="Shuffle the playlist!" data-placement="bottom">Shuffle</button>
+							<!--
+							<div class="input-group active_tooltip" data-original-title="Purge this user's videos from the playlist" data-placement="bottom">
+								<span class="input-group-btn">
+									<button id='purge_btn' class="btn btn-sm btn-primary" type="button">Purge</button>
+								</span>
+								<input id="purge_username" type="text" class="form-control input-sm" placeholder="Username to purge..">
+							</div>
+							-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4 hidden-xs column" style="padding-top: 4px; overflow-y: auto; max-height: 358px">
+			<div class="mod-control"><button id="create_poll_btn_column" class="btn btn-xs btn-default" style="margin-bottom: 6px; margin-left: 10px; float: left;">Create Poll</button></div>
+			<div style="clear: both;"></div>
+			<div id="poll_column"></div>
+		</div>
+		<div class="room-info-row col-xs-12"> <!-- When poll created, remove col-sm-4 and replace it when poll end  -->
+			<div class="overview">
+				<h2 class="room-name"><%- room.room_name %></h2>
+				<div class="room-stats">
+					<div><%= commaSeparateNumber(room.visits) %> visits</div>
+					<!-- <div> 0 Favorites </div>-->
+				</div>
+				<div class="about"></div>
+			</div>
+			<div>
+				<div class="room-info">
+					<%- sanitizeRoomInfo(room.info) %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+	/*
+	 * initalize some room properties
+	 */
+	var ROOM_NAME = <%- '"' + room.room_name.toLowerCase() + '"'%>;
+	var CHAT_SERVER = {
+		host:"http://ws-proxy.chat.instasync.com",
+		port: 8080
+	}
+	var SECURE_CHAT_SERVER = {
+		host:"https://ws-proxy.chat.instasync.com",
+		port: 8443
+	}
+	var FAIL_OVER = {
+		host:"https://ssl-chat.instasync.com",
+		port:443
+	}
+	$codes = {};
+	$.ajax({
+            type: "GET",
+            url: "/emotes/"+ROOM_NAME.toLowerCase()+".js",
+			error: function()
+			{
+				$.ajax({
+				type: "GET",
+				url: "/js/emotes.js",
+				dataType: "script",
+				cache: true});
+			},
+            dataType: "script",
+            cache: true
+    });
+</script>
+<!-- Start with room, each js file is self executing and attachs itself to the global 'room' object -->
+<script type='text/javascript' src="/js/room/room.js"></script>
+<script type='text/javascript' src="/js/room/room_commands.js"></script>
+<script type='text/javascript' src="/js/room/room_socket.js"></script>
+<script type='text/javascript' src="/js/room/room_bindings.js"></script>
+<script type='text/javascript' src="/js/room/room_playlist.js"></script>
+<script type='text/javascript' src="/js/room/room_userlist.js"></script>
+<script type='text/javascript' src="/js/room/room_poll.js"></script>
+<script type='text/javascript' src="/js/room/player.js"></script>

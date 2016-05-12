@@ -1,0 +1,46 @@
+.fadeToTransition(@name, @backgroundColor: none, @fontColor: none){
+	animation:@name 3s infinite;
+	-moz-animation:@name 3s infinite; /* Firefox */
+	-webkit-animation:@name 3s infinite; /* Safari and Chrome */
+	@keyframes @name /* Firefox */
+	{
+		0%   {background-color:none; color:none;}
+		50%  {background:@backgroundColor; color: @fontColor;}
+		100%   {background-color:none; color: none}
+	}
+	@-moz-keyframes @name /* Firefox */
+	{
+		0%   {background-color:none; color:none;}
+		50%  {background:@backgroundColor; color: @fontColor;}
+		100%   {background-color:none; color: none}
+	}
+	@-webkit-keyframes @name /* Firefox */
+	{
+		0%   {background-color:none; color:none;}
+		50%  {background:@backgroundColor; color: @fontColor;}
+		100%   {background-color:none; color: none}
+	}
+}
+.fadeTextToTransition(@name, @fontColor: none){
+	animation:@name 3s infinite;
+	-moz-animation:@name 3s infinite; /* Firefox */
+	-webkit-animation:@name 3s infinite; /* Safari and Chrome */
+	@keyframes @name /* Firefox */
+	{
+		0%   {color:none;}
+		50%  {color: @fontColor;}
+		100%   {color: none}
+	}
+	@-moz-keyframes @name /* Firefox */
+	{
+		0%   {color:none;}
+		50%  {color: @fontColor;}
+		100%   {color: none}
+	}
+	@-webkit-keyframes @name /* Firefox */
+	{
+		0%   {color:none;}
+		50%  {color: @fontColor;}
+		100%   {color: none}
+	}
+}

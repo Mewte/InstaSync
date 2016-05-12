@@ -1,0 +1,82 @@
+<% layout('../layout/template') -%>
+<script type='text/javascript'>
+	//Set class=active for active nav item
+	$("#home_nav_item").addClass("active");
+</script>
+<div class="page-container">
+	<div class="home">
+		<div class="row">
+			<div class="col-sm-6 col-xs-12 section">
+				<h3>What is InstaSync?</h3>
+				<p>
+					InstaSync (Inspired by SynchTube) is a place that allows users to watch synchronized videos with each other and chat in real time, fully synchronized!
+				</p>
+			</div>
+			<div class="col-sm-6 col-xs-12 section">
+				<h3>Awesome! But how do I get started?</h3>
+				<p>
+					Simply visit any room you'd like and you can begin chatting as an unregistered user.
+					If you'd like to have all the features (adding videos, voting, and profile) you must register.
+				</p>
+			</div>
+			<div class="col-sm-6 col-xs-12 section">
+				<h3>
+					What about my own room?
+				</h3>
+				<p>
+					When you register, you also create a room in your name. To access this room,
+					log in and click My Room from the settings drop down menu (accessed by clicking on your name in the top right corner.)
+				</p>
+			</div>
+			<div class="col-sm-6 col-xs-12 section">
+				<h3>But I need more help than that!</h3>
+				<p>
+					Check out the <a href="/pages/help">Help</a> page!<br />
+					Questions/Comments? Email me at: <strong>admin@instasync.com</strong>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div>
+		<h3 class='public-rooms-h'>Public Rooms</h3>
+		<div class='users-online'>
+			<span id="users_online">?</span> Users Online in <span id="rooms_online">?</span> rooms
+			<div>
+				<label for="sort_by">Sort by:</label>
+				<select id="sort_by">
+				  <option value="random">Default</option>
+				  <option value="users">Users</option>
+				  <option value="visits">Visits</option>
+				</select>
+			</div>
+		</div>
+		<div id="room_list_loading" style="display: none;">
+			<span class="fa fa-circle-o-notch fa-spin"></span>
+		</div>
+	</div>
+	<div id="room_list" class="row rooms"></div>
+	<div class="text-center">
+		<nav>
+			<!--
+			<ul class="pagination">
+				<li>
+					<a href="javascript:void(0)" id="roomlist_prev" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			</ul>
+			-->
+			<ul class="pagination" id="roomlist_pagination_pages"></ul>
+			<!--
+			<ul class="pagination">
+				<li>
+					<a href="javascript:void(0)" id="roomlist_next" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+			-->
+			<!--<div>Showing <span id="pagination_totals">0 of 0</span></div> -->
+		</nav>
+	</div>
+</div>

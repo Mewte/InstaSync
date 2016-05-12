@@ -1,0 +1,113 @@
+<%
+if (typeof partial != 'undefined' && partial == true) { %>
+	<%- body %>
+<% }
+else{
+%><!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="<%= 'InstaSync is a place that allows users to join chat rooms and watch videos togethers. Fully Synchronized.' %>">
+		<!-- OG TAGS -->
+		<meta property="og:title" content="InstaSync - Watch Videos with Friends!" />
+		<meta property="og:site_name" content="InstaSync" />
+		<meta property="og:description" content="InstaSync is a place that allows users to join chat rooms and watch videos togethers. Fully Synchronized." />
+		<meta property="og:url" content="http://instasync.com" />
+		<meta property="og:image" content="http://instasync.com/images/icon.png" />
+
+		<!-- HTML5 shim, for IE6-8 support of HTML elements -->
+		<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!-- Bootstrap Core CSS -->
+		<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+		<!-- Custom Fonts -->
+		<link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+		<link href="/css/styles.css" rel="stylesheet">
+		<link href="//fonts.googleapis.com/css?family=Open+Sans|Dosis:400,800|Droid+Sans:400,700|Lobster" rel="stylesheet" type="text/css" />
+		<link REL="SHORTCUT ICON" HREF="/favicon.ico">
+		<!-- jQuery Version 1.11.0 + JQuery UI 1.11.2 -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!--<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />-->
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<!-- Libraries -->
+			<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="/libs/socket.io.js"></script>
+			<script type="text/javascript" src="/libs/jquery.cookie.js"></script>
+			<script type='text/javascript' src="/libs/jquery.linkify.js"></script>
+			<script type='text/javascript' src="/libs/EventEmitter.min.js"></script>
+		<!-- Video.JS -->
+			<link rel="stylesheet" href="/libs/videojs/video-js.css">
+			<script type='text/javascript' src="/libs/videojs/video.instasynch.js"></script>
+				<!-- Video.js plugins -->
+				<script type='text/javascript' src="/libs/videojs/plugins/videojs.logobrand.js"></script>
+				<script src="/libs/videojs/plugins/videojs.progressTips.min.js"></script>
+					<link rel="stylesheet" href="/libs/videojs/plugins/videojs.progressTips.min.css" type="text/css" />
+				<script type='text/javascript' src="/libs/videojs/plugins/youtube.js"></script>
+				<script type='text/javascript' src="/libs/videojs/plugins/media.dailymotion.js"></script>
+		<!-- Custom -->
+			<script type='text/javascript' src="/js/utils.js"></script>
+			<script type="text/javascript" src="/js/document_ready.js"></script>
+			<script type="text/javascript" src="/js/request.js"></script>
+		<title><%= title %></title>
+	</head>
+	<body>
+		<%- include header %>
+		<div id='partial_page' class="container">
+			<%- body %>
+		</div>
+		<%- include footer %>
+		<!-- View Specific Scripts -->
+		<%-scripts%>
+		<!-- Inline Scripts go here -->
+			<script type="text/javascript">
+				if( window.console == undefined) {window.console = {log: function(){}};}
+			</script>
+			<script type='text/javascript'>
+				$(document).ready(function () {
+					$(".active_tooltip").tooltip();
+				});
+			</script>
+			<script type="text/javascript">
+				//Don't hide menu form when clicking it
+				$('.dropdown-menu.dropdown-form').click(function(e) {
+					e.stopPropagation();
+				});
+			</script>
+			<!--
+			<script>
+				(function(){
+					var ajax  = $.ajax;
+					$.ajax = function(obj){
+						if (obj.dataType != undefined && obj.dataType.toLowerCase() == 'script'){
+							console.log('Remote scripts are discouraged. Please include the contents of the script in its entirety instead of making AJAX requests for them.');
+							return false;
+						}
+						//obj.xhrFields = {
+							//withCredentials: true
+						//};
+						return ajax(obj);
+					};
+				})();
+			</script>
+			-->
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-58412908-1', 'auto');
+			  ga('send', 'pageview');
+
+			</script>
+	</body>
+</html>
+<%
+}
+%>

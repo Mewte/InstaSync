@@ -1,0 +1,12 @@
+<% layout('layout/template') -%>
+<div class="page-container">
+	<div class="row">
+		<div class="col-xs-12" style="width: 90%; float: none; margin: 0 auto; margin-top: 40px;">
+			<h2><%= error.status %></h2>
+			<p><%= error.message %></p>
+			<% if (typeof error.stack != 'undefined' && error.stack != "") { %>
+				<pre><%= error.stack %></pre>
+			<% } %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,221 @@
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">InstaSync</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li id="home_nav_item">
+					<a href="/">
+						<span class="glyphicon glyphicon-home"></span> Home
+					</a>
+                </li>
+                <li id="help_nav_item">
+					<a href="/pages/help"><span class=" glyphicon glyphicon-info-sign"></span> Help</a>
+                </li>
+                <li id="about_nav_item" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li id="terms_nav_item">
+							<a href="/pages/terms">Terms Of Service</a>
+                        </li>
+                        <li id="privacy_nav_item">
+							<a href="/pages/privacy">Privacy Policy</a>
+                        </li>
+                        <li id="dmca_nav_item">
+							<a href="/pages/dmca">DMCA</a>
+                        </li>
+                        <li>
+							<a href="mailto:admin@instasync.com">Contact</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+				<li id="user_dropdown" class="dropdown" style="display: none;">
+					<a class="dropdown-toggle" href="" data-toggle="dropdown"><span class="fa fa-user"></span> <span id="logged_in_as"></span> <strong class="caret"></strong></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a id="my_room_link" href=""><i class="fa fa-home"></i> My Room</a>
+						</li>
+						<li>
+							<a href="#settings_modal" onclick="$('#settings_modal').modal('show'); return false;"><i class="fa fa-cog"></i> Settings</a>
+						</li>
+						<li>
+							<a id="logout" href=""><i class="fa fa-sign-out"></i> Logout</a>
+						</li>
+					</ul>
+				</li>
+				<li id="login_dropdown" class="dropdown" style="display: none;">
+					<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+					<div class="dropdown-menu dropdown-form">
+						<div class="form login-form" role="form">
+							<h4>Sign In</h4>
+							<div id="login_inputs">
+								<input id="login_username" type="text" class="form-control" placeholder="Username" required autofocus>
+								<input id="login_password" type="password" class="form-control" placeholder="Password" required>
+							</div>
+							<div id='invalid_login_message' class="text-danger">
+							</div>
+							<a href='#forgot_password_modal' onclick="$('#forgot_password_modal').modal('show'); return false;">Forgot your password?</a>
+							<button id="login" class="btn btn-xs btn-primary btn-block form-submit">Sign in <span style="padding-left: 5px;" class="glyphicon glyphicon-log-in"></span> </button>
+						</div>
+					</div>
+				</li>
+				<li id="register_dropdown" class="dropdown" style="display: none;">
+					<a class="dropdown-toggle" href="#" data-toggle="dropdown">Register <strong class="caret"></strong></a>
+					<div class="dropdown-menu dropdown-form">
+						<div class="form register-form" role="form">
+							<h4>Register</h4>
+							<div id="register_username_box">
+								<input id="register_username" type="text" class="form-control" placeholder="Username" maxlength="15" required autofocus>
+							</div>
+							<div id="register_password_box">
+								<input id="register_password" type="password" class="form-control" placeholder="Password" required>
+							</div>
+							<div id="register_confirm_password_box">
+								<input id="register_confirm_password" type="password" class="form-control" placeholder="Confirm Password" required>
+							</div>
+							<div id="register_email_box">
+								<input id="register_email" class="form-control" placeholder="Email" required maxlength="255">
+								<span data-toggle="tooltip" data-placement="left" title="We do not sell email addresses to third parties. We only use email addresses for password resets and important announcements." class="active_tooltip email-policy glyphicon glyphicon-question-sign"></span>
+							</div>
+							<div class="checkbox">
+								<span class="" style="display: inline-block; padding-top: 3px;">By using this site, you agree to the <a href="/pages/terms" target="_blank">Terms Of Service</a>.</span>
+							</div>
+							<div id='invalid_register_message' class="text-danger">
+							</div>
+							<button id="register" class="btn btn-xs btn-primary btn-block form-submit">Register <span style="padding-left: 5px;" class="glyphicon glyphicon-log-in"></span> </button>
+						</div>
+					</div>
+				</li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="forgot_password_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Forgot Password</h4>
+			</div>
+			<div class="modal-body">
+				<div style="margin-bottom: 5px;">
+					<input data-name="email" style="margin-bottom: 4px;" type="text" class="form-control" placeholder="Email"/>
+					<input data-name="username" type="text" class="form-control" placeholder="Username"/>
+				</div>
+				<div data-name="output" class="text-danger"></div>
+			</div>
+			<div class="modal-footer">
+				<button data-name="submit" type="button" class="btn btn-primary btn-sm">Submit</button>
+				<button type="button" class="btn btn-default btn-sm" onclick="$('#forgot_password_modal').modal('hide')">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Settings Modal -->
+<div class="modal fade" id="settings_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">My Settings - <span id="settings_username"></span></h4>
+			</div>
+			<div class="modal-body">
+				<div class="panel panel-default">
+					<div class="panel-heading">Change Password <i class="fa fa-caret-down"></i></div>
+					<div class="panel-body">
+						<div>
+							<input data-id="current_password" type="password" class="form-control input-sm" placeholder="Current"/>
+						</div>
+						<div>
+							<input data-id="new_password" type="password" class="form-control input-sm" placeholder="New"/>
+						</div>
+						<div>
+							<input data-id="confirm_new_password" type="password" class="form-control input-sm" placeholder="Confirm"/>
+						</div>
+						<div data-type="output" class=""></div>
+						<button data-id="change_password" type="button" class="btn btn-primary btn-sm" autocomplete="off">Change</button>
+					</div>
+				</div>
+				<div data-id="user_info_panel" class="panel panel-default">
+					<div class="panel-heading">User Info  <i class="fa fa-caret-down"></i></div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="settings_avatar">IMGUR Avatar URL:</label>
+							<input data-id="avatar" id="settings_avatar" type="text" class="form-control input-sm" placeholder="http://i.imgur.com/abc123">
+						</div>
+						<div class="form-group">
+							<label for="settings_bio">User Bio:</label>
+							<textarea data-id="bio" class="form-control max-limit" data-limit="512" rows="3" id="settings_bio"></textarea>
+							<div class="character-counter"></div>
+						</div>
+						<div data-type="output"></div>
+						<button  data-id="update_user" type="button" class="btn btn-primary btn-sm" autocomplete="off">Save</button>
+					</div>
+				</div>
+				<div data-id="room_info_panel" class="panel panel-default">
+					<div class="panel-heading">Room Info  <i class="fa fa-caret-down"></i></div>
+					<div class="panel-body">
+						<div class="radio">
+							<label>
+								<input type="radio" name="listing" id="optionsRadios1" value="public">
+								Public - Your room appears in public listings (such as the front page)
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="listing" id="optionsRadios2" value="private">
+								Private - Your room will be hidden from public listings (such as the front page)
+							</label>
+						</div>
+						<div class="radio disabled">
+							<label>
+								<input type="radio" name="listing" id="optionsRadios3" value="friends" disabled>
+								<span style="color:#AAAAA2">Friends Only - Coming Soon!</span>
+							</label>
+						</div>
+						<div class="form-group">
+							<label for="settings_room_description">Room Description:</label>
+							<textarea data-id="room_description" class="form-control max-limit" data-limit="160" rows="2" id="settings_room_description"></textarea>
+							<div class="character-counter"></div>
+						</div>
+						<div class="form-group">
+							<label for="settings_room_info">Room Info:</label> <span>(Supports HTML tags)</span>
+							<textarea data-id="room_info" class="form-control max-limit" data-limit="2048" rows="5" id="settings_room_info"></textarea>
+							<div class="character-counter"></div>
+						</div>
+						<div data-type="output"></div>
+						<button data-id="update_room" type="button" class="btn btn-primary btn-sm">Save</button>
+					</div>
+				</div>
+				<div data-id="room_mods_panel" class="panel panel-default">
+					<div class="panel-heading">Edit Room Mods  <i class="fa fa-caret-down"></i></div>
+					<div class="panel-body">
+						<p style="color: #999;">Add and remove moderators that can control your room.</p>
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button data-id="add_mod" class="btn btn-sm btn-primary" type="button">Add Mod</button>
+							</span>
+							<input style="margin-bottom: 0px;" data-id="mod_username" class="form-control input-sm" placeholder="Username to mod..." type="text">
+						</div>
+						<ul data-id="mod_list" class="mod-list list-unstyled"></ul>
+						<div data-type="output"></div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-sm" onclick="$('#settings_modal').modal('hide')">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+{
+  "name": "instasync",
+  "homepage": "https://github.com/Mewte/InstaSync",
+  "authors": [
+    "Mewte <Lindner4147@yahoo.com>"
+  ],
+  "description": "InstaSync Resources",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.6.2",
+    "bootstrap": "^3.2.0"
+  }
+}

@@ -1,0 +1,179 @@
+.page-container{
+	margin-bottom: 20px;
+	background-color: white;
+	padding: 0px 20px 30px 20px;
+	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.276);
+	border-radius: 2px;
+	margin-top: 55px;
+	.home{
+		border-bottom: 4px solid #E2E2E2;
+	}
+	.public-rooms-h{
+		float: left;
+		@media(max-width: @media-xxs){
+			float: none;
+		}
+	}
+	.users-online{
+		float: right;
+		margin-top: 20px;
+		margin-bottom: 10px;
+		@media(max-width: @media-xxs){
+			float: none;
+			margin-top: 0px;
+		}
+	}
+	#room_list_loading{
+		clear: both;
+		text-align:center;
+		font-size:48px;
+	}
+	.rooms{
+		margin-top: 75px;
+		.room{
+			margin-bottom: 10px;
+			.title{
+				line-height: 1.2;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				margin-bottom: 2px;
+				font-family: @fontA;
+				a{
+					color: #000;
+				}
+			}
+			.room-thumbnail{
+				margin-bottom: 5px;
+			}
+			.room-name{
+				color: #999;
+				font-size: 11px;
+				a{
+					&:extend(.username);
+				}
+			}
+			.visits, .watching{
+				color: #999;
+				font-size: 11px;
+			}
+		}
+	}
+}
+/* ------------------------------- */
+/* ------FRONT PAGE ROOM LIST MEDIA QUERIES----------
+	Smallest Devices */
+@media(max-width:767px){
+	/* Column clear fix */
+	.clean-break.col-lg-1:nth-child(12n+1),
+	.clean-break.col-lg-2:nth-child(6n+1),
+	.clean-break.col-lg-3:nth-child(4n+1),
+	.clean-break.col-lg-4:nth-child(3n+1),
+	.clean-break.col-lg-6:nth-child(2n+1),
+	.clean-break.col-sm-1:nth-child(12n+1),
+	.clean-break.col-sm-2:nth-child(6n+1),
+	.clean-break.col-sm-3:nth-child(4n+1),
+	.clean-break.col-sm-4:nth-child(3n+1),
+	.clean-break.col-sm-6:nth-child(2n+1),
+	.clean-break.col-md-1:nth-child(12n+1),
+	.clean-break.col-md-2:nth-child(6n+1),
+	.clean-break.col-md-3:nth-child(4n+1),
+	.clean-break.col-md-4:nth-child(3n+1),
+	.clean-break.col-md-6:nth-child(2n+1){
+	clear: none;
+	}
+	.clean-break.col-xs-1:nth-child(12n+1),
+	.clean-break.col-xs-2:nth-child(6n+1),
+	.clean-break.col-xs-3:nth-child(4n+1),
+	.clean-break.col-xs-4:nth-child(3n+1),
+	.clean-break.col-xs-6:nth-child(2n+1){
+	clear: left;
+	}
+}
+/* --------------------------------*/
+/*  Tablet  */
+@media (min-width:767px){
+
+	/* Column clear fix */
+	.clean-break.col-lg-1:nth-child(12n+1),
+	.clean-break.col-lg-2:nth-child(6n+1),
+	.clean-break.col-lg-3:nth-child(4n+1),
+	.clean-break.col-lg-4:nth-child(3n+1),
+	.clean-break.col-lg-6:nth-child(2n+1),
+	.clean-break.col-md-1:nth-child(12n+1),
+	.clean-break.col-md-2:nth-child(6n+1),
+	.clean-break.col-md-3:nth-child(4n+1),
+	.clean-break.col-md-4:nth-child(3n+1),
+	.clean-break.col-md-6:nth-child(2n+1),
+	.clean-break.col-xs-1:nth-child(12n+1),
+	.clean-break.col-xs-2:nth-child(6n+1),
+	.clean-break.col-xs-3:nth-child(4n+1),
+	.clean-break.col-xs-4:nth-child(3n+1),
+	.clean-break.col-xs-6:nth-child(2n+1){
+	clear: none;
+	}
+	.clean-break.col-sm-1:nth-child(12n+1),
+	.clean-break.col-sm-2:nth-child(6n+1),
+	.clean-break.col-sm-3:nth-child(4n+1),
+	.clean-break.col-sm-4:nth-child(3n+1),
+	.clean-break.col-sm-6:nth-child(2n+1){
+	clear: left;
+	}
+}
+/*  Medium Desktop  */
+@media (min-width:992px){
+
+	/* Column clear fix */
+	.clean-break.col-lg-1:nth-child(12n+1),
+	.clean-break.col-lg-2:nth-child(6n+1),
+	.clean-break.col-lg-3:nth-child(4n+1),
+	.clean-break.col-lg-4:nth-child(3n+1),
+	.clean-break.col-lg-6:nth-child(2n+1),
+	.clean-break.col-sm-1:nth-child(12n+1),
+	.clean-break.col-sm-2:nth-child(6n+1),
+	.clean-break.col-sm-3:nth-child(4n+1),
+	.clean-break.col-sm-4:nth-child(3n+1),
+	.clean-break.col-sm-6:nth-child(2n+1),
+	.clean-break.col-xs-1:nth-child(12n+1),
+	.clean-break.col-xs-2:nth-child(6n+1),
+	.clean-break.col-xs-3:nth-child(4n+1),
+	.clean-break.col-xs-4:nth-child(3n+1),
+	.clean-break.col-xs-6:nth-child(2n+1){
+	clear: none;
+	}
+	.clean-break.col-md-1:nth-child(12n+1),
+	.clean-break.col-md-2:nth-child(6n+1),
+	.clean-break.col-md-3:nth-child(4n+1),
+	.clean-break.col-md-4:nth-child(3n+1),
+	.clean-break.col-md-6:nth-child(2n+1){
+	clear: left;
+	}
+}
+/*  Large Desktop  */
+@media (min-width:1200px){
+
+	/* Column clear fix */
+	.clean-break.col-md-1:nth-child(12n+1),
+	.clean-break.col-md-2:nth-child(6n+1),
+	.clean-break.col-md-3:nth-child(4n+1),
+	.clean-break.col-md-4:nth-child(3n+1),
+	.clean-break.col-md-6:nth-child(2n+1),
+	.clean-break.col-sm-1:nth-child(12n+1),
+	.clean-break.col-sm-2:nth-child(6n+1),
+	.clean-break.col-sm-3:nth-child(4n+1),
+	.clean-break.col-sm-4:nth-child(3n+1),
+	.clean-break.col-sm-6:nth-child(2n+1),
+	.clean-break.col-xs-1:nth-child(12n+1),
+	.clean-break.col-xs-2:nth-child(6n+1),
+	.clean-break.col-xs-3:nth-child(4n+1),
+	.clean-break.col-xs-4:nth-child(3n+1),
+	.clean-break.col-xs-6:nth-child(2n+1){
+	clear: none;
+	}
+	.clean-break.col-lg-1:nth-child(12n+1),
+	.clean-break.col-lg-2:nth-child(6n+1),
+	.clean-break.col-lg-3:nth-child(4n+1),
+	.clean-break.col-lg-4:nth-child(3n+1),
+	.clean-break.col-lg-6:nth-child(2n+1){
+	clear: left;
+	}
+}
