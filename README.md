@@ -32,6 +32,8 @@ If you're really interested in getting this running here's some hints.
 
 Web is the main web server, chat/chat.js is the core chat server. chat/clients.js is the socket.io layer that communicates with the chat core. There's a lot of moving pieces and I never had the time to make all the changes I wanted. 
 
+It might help to check out mewte/is_chat and mewte/InstaSync-WebServer as those two repos were combined into this repo for easy management.
+
 ####In Closing
 
 If you use this project to build anything cool, or maybe it inspires you to follow your own dreams feel free share your story with me. 
