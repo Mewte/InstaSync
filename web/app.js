@@ -50,6 +50,7 @@ app.use(function(req,res,next){ //remove after converting to helpers.queries
 	next();
 });
 app.use(function(req,res,next){ //domain access only
+	return next(); //forcing return since instasync.com is no longer used
 	var host = req.headers.host;
 	var hostname = ( req.headers.host.match(/:/g) ) ? req.headers.host.slice( 0, req.headers.host.indexOf(":") ) : req.headers.host;
 	if (hostname == "localhost" || host =="instasync.com" || host == "dev.instasync.com"){
