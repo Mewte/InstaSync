@@ -134,8 +134,7 @@ CREATE TABLE `sessions` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
-  `hashpw` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
-  `cookie` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `hashpw` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(7) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'YfyWjq4',
   `bio` varchar(1024) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No Bio',
