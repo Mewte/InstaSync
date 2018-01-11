@@ -141,7 +141,7 @@ CREATE TABLE `users` (
   `social` tinyint(1) NOT NULL DEFAULT '1',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `registered_ip` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `last_login` date NOT NULL
+  `last_login` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
