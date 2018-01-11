@@ -9,6 +9,8 @@ var helpers = instasync.helpers;
 var queries = helpers.queries;
 var email = require("emailjs");
 var promise = require("bluebird");
+var bcrypt = require('bcrypt');
+
 //router.use(function(req,res,next){ //testing only
 //	res.set('Access-Control-Allow-Origin',req.headers.origin || req.host);
 //	res.set('Access-Control-Allow-Methods','GET, POST, PUT, DELETE, OPTIONS');
@@ -129,27 +131,30 @@ router.post('/register', function(req,res,next){
         return next(error);
 	}
 	//so much validation, yay now we can actually do the registration portions..
-	password = crypto.createHash('sha1').update(password).digest('hex');
-	var auth_token = crypto.pseudoRandomBytes(20).toString('hex');
-	req.db('users').insert({username: username, hashpw: password, email: email, last_login: moment().format("YYYY-MM-DD HH:mm:ss"), registered_ip: req.cf_ip}).bind({}).then(function(inserted_ids){
-		this.user_id = inserted_ids[0];
-		return req.db('rooms').insert({room_id: this.user_id, room_name: username});
-	}).then(function(){
-		return req.db('sessions').insert({user_id:this.user_id,cookie: auth_token,username: username});
-	}).then(function(){
-		res.cookie('auth_token', auth_token, {expires: new Date(Date.now() + 60*60*24*7*52*1000)}); //1000 for milliseconds
-		res.cookie('username', username, {expires: new Date(Date.now() + 60*60*24*7*1000)}); //1000 for milliseconds
-		res.json({username: username, user_id: this.user_id});
-	}).catch(function(err){
-		//fix this
-		if (err.code == "ER_DUP_ENTRY"){
-			var error = new Error("That username is already registered.");
-			error.status = 422;
-			error.field_name = "username";
-			return next(error);
-		}
-		return next(err);
-	});
+    bcrypt.hash(password, 12).then(function(hash) {
+        var auth_token = crypto.pseudoRandomBytes(20).toString('hex');
+        return req.db('users').insert({username: username, hashpw: hash, email: email, last_login: moment().format("YYYY-MM-DD HH:mm:ss"), registered_ip: req.cf_ip}).bind({})
+            .then(function(inserted_ids){
+                this.user_id = inserted_ids[0];
+                return req.db('rooms').insert({room_id: this.user_id, room_name: username});
+            }).then(function(){
+            	return req.db('sessions').insert({user_id:this.user_id,cookie: auth_token,username: username});
+        	}).then(function(){
+            	res.cookie('auth_token', auth_token, {expires: new Date(Date.now() + 60*60*24*7*52*1000)}); //1000 for milliseconds
+            	res.cookie('username', username, {expires: new Date(Date.now() + 60*60*24*7*1000)}); //1000 for milliseconds
+            	res.json({username: username, user_id: this.user_id});
+        });
+    }).catch(function(err){
+        //fix this
+		// *what's there to fix?
+        if (err.code == "ER_DUP_ENTRY"){
+            var error = new Error("That username is already registered.");
+            error.status = 422;
+            error.field_name = "username";
+            return next(error);
+        }
+        return next(err);
+    });
 });
 router.get('/me/user_info', function(req,res,next){
 	if (!req.user){
@@ -212,6 +217,9 @@ router.post('/me/change_password', function(req,res,next){
 	});
 });
 router.post('/me/send_reset', function(req,res,next){
+    var error = new Error("Password reset function currently disabled.");
+    error.status = 503;
+    return next(error);
 	var username = req.body.username || "";
 	var email_address = req.body.email || "";
 	queries.getResets(req.cf_ip).then(function(resets){
