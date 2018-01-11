@@ -5,7 +5,7 @@ var parser = require("./parsers");
 
 var yt = require('youtube-node');
 var Youtube = new yt();
-Youtube.setKey("AIzaSyAeh6mQ9y2qV1OARN04Z1NKfHDifSlblQs");
+Youtube.setKey("AIzaSyCGiQ9RPOYbWTbPV3-T1I6s4yyLzjleif8");
 var instasync = require('instasync');
 var Socket = require("./socket");
 var video = require('n-vimeo').video;
