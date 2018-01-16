@@ -7,12 +7,12 @@ if (isset($_GET["errors"])){
 	ini_set('display_errors', 1);
 }
 function createMc(){
-	if (function_exists("memcache_connect")){
-		$memcached = new Memcache;
-		$memcached->addServer('127.0.0.1', 11211);
-		return $memcached;
-	}
-	return false;
+        if (class_exists("Memcached")){
+                $memcached = new Memcached;
+                $memcached->addServer('127.0.0.1', 11211);
+                return $memcached;
+        }
+        return false;
 }
 if (isset($_GET['id'], $_GET['type'])) {
 	$id = $_GET['id'];
