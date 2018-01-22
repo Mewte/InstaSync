@@ -88,7 +88,7 @@ var request = new function(){
 	};
 	this.getYoutubeSearch = function(parameters, callback){
 		$.get("https://www.googleapis.com/youtube/v3/search",{
-			"key":"AIzaSyBfXyKOS32phSgIEDNbaJMNQuXAEVVFBac",
+			"key":"AIzaSyAfP2jaU4RojaxH77kgHCE2N5yzlJ5Y_00",
 			"part":"snippet",
 			"fields":"nextPageToken,prevPageToken,items(id)",
 			"type":"video",
