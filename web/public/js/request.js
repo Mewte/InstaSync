@@ -107,7 +107,7 @@ var request = new function(){
 				var prevToken = data.prevPageToken;
 				var nextToken = data.nextPageToken;
 				$.get("https://www.googleapis.com/youtube/v3/videos",{
-					"key":"AIzaSyBfXyKOS32phSgIEDNbaJMNQuXAEVVFBac",
+					"key":"AIzaSyAfP2jaU4RojaxH77kgHCE2N5yzlJ5Y_00",
 					"id":IDs.join(),
 					"part":"id,contentDetails,snippet,statistics",
 					"fields":"items(id,contentDetails/duration,snippet/title,snippet/channelTitle,statistics/viewCount)"
